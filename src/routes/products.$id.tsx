@@ -33,7 +33,7 @@ export const Route = createFileRoute("/products/$id")({
 });
 
 function Detail() {
-  const { product } = Route.useLoaderData();
+  const { product } = Route.useLoaderData() as { product: import("@/lib/products").Product };
   const { add } = useCart();
   const [finish, setFinish] = useState(product.finishes?.[0]);
   const [size, setSize] = useState(product.sizes?.[0]);
