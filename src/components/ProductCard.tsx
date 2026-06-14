@@ -3,7 +3,9 @@ import { FINISH_COLORS, type Product } from "@/lib/products";
 import { useCart } from "@/lib/cart";
 
 export function ProductCard({ product }: { product: Product }) {
-  const { add } = useCart();
+  const { add, update, remove, items } = useCart();
+  const finish = product.finishes?.[0];
+  const inCart = items.find(i => i.id === product.id && i.finish === finish);
   return (
     <div className="product-card group flex flex-col">
       <div className="img-wrap relative aspect-square bg-gradient-to-br from-[#222] to-[#1a1a1a] flex items-center justify-center overflow-hidden">
@@ -35,10 +37,26 @@ export function ProductCard({ product }: { product: Product }) {
         </div>
         <div className="flex gap-2 pt-2">
           <Link to="/products/$id" params={{ id: product.id }} className="flex-1 btn-outline justify-center !py-2.5 !px-3 !text-[11px]">View</Link>
-          <button
-            onClick={() => add({ id: product.id, name: product.name, price: product.price, unit: product.unit, finish: product.finishes?.[0] })}
-            className="flex-1 btn-primary justify-center !py-2.5 !px-3 !text-[11px]"
-          >+ Cart</button>
+          {inCart ? (
+            <div className="flex-1 flex items-center justify-between bg-primary text-primary-foreground font-bold text-sm select-none">
+              <button
+                onClick={() => inCart.qty <= 1 ? remove(product.id, finish) : update(product.id, finish, inCart.qty - 1)}
+                className="px-3 py-2.5 hover:bg-black/15 transition-colors"
+                aria-label="Decrease"
+              >−</button>
+              <span className="text-[13px]">{inCart.qty}</span>
+              <button
+                onClick={() => update(product.id, finish, inCart.qty + 1)}
+                className="px-3 py-2.5 hover:bg-black/15 transition-colors"
+                aria-label="Increase"
+              >+</button>
+            </div>
+          ) : (
+            <button
+              onClick={() => add({ id: product.id, name: product.name, price: product.price, unit: product.unit, finish })}
+              className="flex-1 btn-primary justify-center !py-2.5 !px-3 !text-[11px]"
+            >+ Cart</button>
+          )}
         </div>
       </div>
     </div>

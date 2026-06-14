@@ -56,8 +56,7 @@ function Cart() {
               <div className="flex justify-between"><span className="text-muted-foreground">Shipping</span><span className="text-xs text-muted-foreground">Calculated at checkout</span></div>
               <div className="flex justify-between pt-3 border-t border-border font-display text-2xl"><span>Total</span><span>₹{total}</span></div>
             </div>
-            <Link to="/checkout" className="btn-primary w-full justify-center mt-6">Proceed to Checkout →</Link>
-            <Link to="/products" className="btn-outline w-full justify-center mt-3">Continue Shopping</Link>
+            <Link to="/products" className="btn-outline w-full justify-center mt-6">Continue Shopping</Link>
           </aside>
         </div>
       </div>
