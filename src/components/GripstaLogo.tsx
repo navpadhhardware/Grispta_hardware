@@ -1,4 +1,4 @@
-import logo from "@/assets/gripsta-logo-v4.png.asset.json";
+import logo from "@/assets/gripsta-logo-v5.png.asset.json";
 
 export function GripstaLogo({ className = "" }: { className?: string }) {
   return (
