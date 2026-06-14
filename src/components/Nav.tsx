@@ -89,7 +89,7 @@ export function Nav() {
         </div>
 
         {open && (
-          <div className="lg:hidden absolute top-20 left-0 right-0 bg-[rgba(10,10,10,0.98)] backdrop-blur-xl border-t border-border">
+          <div className="lg:hidden absolute top-20 left-0 right-0 bg-[#0a0a0a] border-t border-border">
             <div className="flex flex-col p-6 gap-1">
               {links.map(l => (
                 <Link
