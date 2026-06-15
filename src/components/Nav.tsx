@@ -177,8 +177,8 @@ export function Nav() {
           <div className="hidden lg:flex items-center gap-8">
             {links.map(l => {
               const isActive = l.hash
-                ? pathname === l.to && hash === `#${l.hash}`
-                : pathname === l.to && !hash;
+                ? pathname === l.to && (hash === `#${l.hash}` || hash === l.hash)
+                : pathname === l.to;
 
               return (
                 <Link
@@ -220,8 +220,8 @@ export function Nav() {
             <div className="flex flex-col p-6 gap-1">
               {links.map(l => {
                 const isActive = l.hash
-                  ? pathname === l.to && hash === `#${l.hash}`
-                  : pathname === l.to && !hash;
+                  ? pathname === l.to && (hash === `#${l.hash}` || hash === l.hash)
+                  : pathname === l.to;
 
                 return (
                   <Link
