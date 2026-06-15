@@ -61,7 +61,7 @@ export function Nav() {
                 to={l.to}
                 hash={l.hash}
                 className="text-sm font-medium uppercase tracking-widest text-foreground/80 hover:text-primary transition-colors"
-               activeProps={{ className: l.hash ? "" : "text-primary" }}
+              activeProps={{ className: l.hash ? "" : "text-primary" }}
               >
                 {l.label}
               </Link>
