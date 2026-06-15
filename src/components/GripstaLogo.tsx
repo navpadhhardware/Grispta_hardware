@@ -9,7 +9,7 @@
 //     />
 //   );
 // }
-import logo from "@/assets/gripsta-logo-v5.png";
+import logo from "@/assets/gripsta-logo.png";
 
 export function GripstaLogo({ className = "" }: { className?: string }) {
   return (
