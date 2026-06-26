@@ -145,7 +145,7 @@ function Home() {
           </Reveal>
           <div className="mt-12 grid md:grid-cols-2 gap-5">
             {[
-              { i: "🛡️", t: "Premium SS Material", d: "Corrosion-resistant stainless steel with ISI marking — built to last." },
+              { i: "🛡️", t: "Premium SS Material", d: "Corrosion-resistant stainless steel with BSI marking — built to last." },
               { i: "🔄", t: "50,000+ Cycle Tested", d: "Every product survives 50,000 open/close cycles before leaving our facility." },
               { i: "🧂", t: "48+ Hours Salt Spray Tested", d: "Tested against corrosion in harsh salt-spray conditions — guaranteed long-term durability." },
             ].map((c, i) => (
