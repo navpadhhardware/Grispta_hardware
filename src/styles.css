@@ -209,3 +209,9 @@
 }
 .category-card:hover { background: var(--color-surface-hover); border-color: var(--color-border-hover); }
 .category-card:hover::after { transform: scaleX(1); }
+
+@keyframes cartPop {
+  0%   { transform: translateY(0);   opacity: 1; }
+  60%  { transform: translateY(-18px); opacity: 1; }
+  100% { transform: translateY(-28px); opacity: 0; }
+}
