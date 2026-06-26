@@ -88,7 +88,7 @@ function About() {
           </Reveal>
           <div className="mt-12 grid sm:grid-cols-3 gap-5">
             {[
-              ["✓", "BSI Certified Products"],
+              ["✓", "BIS Certified Products"],
               ["✓", "50,000 Cycle Tested"],
               ["✓", "Stainless Steel Grade Material"],
             ].map(([icon, text]) => (
