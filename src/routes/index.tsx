@@ -87,8 +87,8 @@ function Home() {
           <span className="text-[10px] tracking-[0.3em] text-muted-foreground">SCROLL</span>
         </div>
       </section> */}
-        <div className="absolute bottom-8 right-8 flex flex-col items-center gap-2 z-0 pointer-events-none">
-          <div className="w-px h-12 bg-primary" style={{ animation: "scrollBounce 2s ease-in-out infinite" }} />
+        <div className="absolute bottom-8 right-8 z-0 pointer-events-none">
+          {/* <div className="w-px h-12 bg-primary" style={{ animation: "scrollBounce 2s ease-in-out infinite" }} /> */}
           <span className="text-[10px] tracking-[0.3em] text-muted-foreground">SCROLL</span>
         </div>
       </section>
