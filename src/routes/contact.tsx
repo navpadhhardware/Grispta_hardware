@@ -43,7 +43,7 @@ function Contact() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-3 gap-5">
           {[
             { i: "📞", l: "Phone", v: "+91 79959 55787" },
-            { i: "✉️", l: "Email", v: "info@gripsta.in" },
+            { i: "✉️", l: "Email", v: "Navpadhhardware@gmail.com" },
             { i: "📍", l: "Address", v: "Aghapura, Backside of Mahalaksmi Tiffin Center, Hyderabad 500001" },
           ].map(c => (
             <div key={c.l} className="bg-surface border border-border p-8">
