@@ -5,7 +5,7 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About — Gripsta" },
-      { name: "description", content: "Gripsta brings premium-grade architectural hardware to every modern interior — ISI certified, 50,000-cycle tested, 48+ hours salt spray tested." },
+      { name: "description", content: "Gripsta brings premium-grade architectural hardware to every modern interior — BSI certified, 50,000-cycle tested, 48+ hours salt spray tested." },
     ],
   }),
   component: About,
@@ -25,17 +25,18 @@ function About() {
         </div>
       </section>
 
+      {/* WHY US */}
       <section id="why" className="bg-surface py-24 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <Reveal>
             <span className="label-accent">Why Choose Gripsta</span>
             <h2 className="font-display text-5xl md:text-6xl mt-3">ENGINEERING PROMISE</h2>
           </Reveal>
-          <div className="mt-12 grid md:grid-cols-2 gap-5">
+          <div className="mt-12 grid md:grid-cols-3 gap-5">
             {[
               { i: "🛡️", t: "Premium SS Material", d: "Corrosion-resistant stainless steel with ISI marking — built for long-term durability in every environment." },
               { i: "🔄", t: "50,000+ Cycle Tested", d: "Every product survives 50,000 open/close cycles before leaving our facility." },
-              { i: "🧂", t: "48+ Hours Salt Spray Tested", d: "Tested against corrosion in harsh salt-spray conditions for guaranteed long-term protection." },
+              { i: "🧂", t: "48+ Hrs Salt Spray Tested", d: "Tested against corrosion in harsh salt-spray conditions for guaranteed long-term protection." },
             ].map((c, i) => (
               <Reveal key={c.t} delay={i * 60}>
                 <div className="bg-background border border-border p-8 h-full hover:border-border-hover transition-colors">
@@ -49,6 +50,7 @@ function About() {
         </div>
       </section>
 
+      {/* APPLICATIONS */}
       <section id="applications" className="py-24 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <Reveal>
@@ -62,7 +64,7 @@ function About() {
               { name: "Office Interiors", desc: "Contract-grade hardware" },
               { name: "Living Room Furniture", desc: "Lid stays & gas springs" },
               { name: "Hotels & Hospitality", desc: "50,000-cycle tested durability" },
-              { name: "POP & Drywall", desc: "Bugle-head screws, 3 finishes" },
+              { name: "POP & Drywall", desc: "Bugle-head screws, multiple finishes" },
             ].map((a, i) => (
               <Reveal key={a.name} delay={i * 50}>
                 <div className="relative aspect-[4/3] border border-border overflow-hidden group" style={{ background: "linear-gradient(135deg,#1a1a1a,#221818)" }}>
@@ -79,22 +81,25 @@ function About() {
         </div>
       </section>
 
+      {/* QUALITY PROMISE */}
       <section className="bg-surface py-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <Reveal>
             <span className="label-accent">Built Right</span>
             <h2 className="font-display text-5xl md:text-6xl mt-3">QUALITY PROMISE</h2>
           </Reveal>
-          <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="mt-12 grid sm:grid-cols-3 gap-5">
             {[
               ["✓", "BSI Certified Products"],
               ["✓", "50,000 Cycle Tested"],
               ["✓", "Stainless Steel Grade Material"],
-            ].map(([i, t]) => (
-              <div key={t} className="bg-background border border-border p-8">
-                <div className="text-3xl text-primary">{i}</div>
-                <h3 className="font-display text-xl mt-3">{t}</h3>
-              </div>
+            ].map(([icon, text]) => (
+              <Reveal key={text}>
+                <div className="bg-background border border-border p-8">
+                  <div className="text-3xl text-primary">{icon}</div>
+                  <h3 className="font-display text-xl mt-3">{text}</h3>
+                </div>
+              </Reveal>
             ))}
           </div>
           <p className="mt-8 text-xs text-muted-foreground">T&C: All rates per packet, subject to change.</p>
