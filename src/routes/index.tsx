@@ -43,7 +43,7 @@ function Home() {
   const featured = PRODUCTS.slice(0, 8);
   const applications = [
     { name: "Modern Kitchens", desc: "Soft-close drawers, premium hinges", img: "linear-gradient(135deg,#1a1a1a,#2a1a1a)" },
-    { name: "Wardrobes", desc: "Heavy-duty hinges in 7 finishes", img: "linear-gradient(135deg,#181818,#241a1a)" },
+    { name: "Wardrobes", desc: "Heavy-duty hinges in multiple finishes", img: "linear-gradient(135deg,#181818,#241a1a)" },
     { name: "Office Interiors", desc: "Contract-grade hardware", img: "linear-gradient(135deg,#1c1c1c,#1c1010)" },
     { name: "Living Room Furniture", desc: "Lid stays & gas springs", img: "linear-gradient(135deg,#1a1a1a,#221818)" },
     { name: "Hotels & Hospitality", desc: "50,000-cycle tested durability", img: "linear-gradient(135deg,#1c1c1c,#2a1a1a)" },
@@ -67,15 +67,14 @@ function Home() {
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link to="/products" className="btn-primary">Explore Products →</Link>
-            <Link to="/dealer" className="btn-outline">Become a Dealer</Link>
           </div>
 
           <div className="mt-16 pt-10 border-t border-border grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl">
             {[
-              { v: 5000, s: "+", l: "Installations" },
+              { v: 80000, s: "+", l: "Installations" },
               { v: 50000, s: "+", l: "Cycle Tested" },
-              { v: 100, s: "+", l: "Products" },
-              { v: 7, s: "", l: "Finish Options" },
+              { v: 80, s: "+", l: "Products" },
+              { v: 48, s: "+ hrs", l: "Salt Spray Tested" },
             ].map(s => (
               <div key={s.l}>
                 <Counter to={s.v} suffix={s.s} />
@@ -146,10 +145,9 @@ function Home() {
           </Reveal>
           <div className="mt-12 grid md:grid-cols-2 gap-5">
             {[
-              { i: "🛡️", t: "Premium SS Material", d: "Corrosion-resistant stainless steel, ISI marked." },
+              { i: "🛡️", t: "Premium SS Material", d: "Corrosion-resistant stainless steel with ISI marking — built to last." },
               { i: "🔄", t: "50,000+ Cycle Tested", d: "Every product survives 50,000 open/close cycles before leaving our facility." },
-              { i: "✨", t: "7 Premium Finishes", d: "Matt Silver, Glossy, Antique, Matt Black, Antique Matt, Satin, Rose Gold." },
-              { i: "🤝", t: "Dealer Network Support", d: "Competitive pricing, fast dispatch, marketing material provided." },
+              { i: "🧂", t: "48+ Hours Salt Spray Tested", d: "Tested against corrosion in harsh salt-spray conditions — guaranteed long-term durability." },
             ].map((c, i) => (
               <Reveal key={c.t} delay={i * 60}>
                 <div className="bg-surface border border-border p-8 hover:border-border-hover transition-colors h-full">
@@ -187,23 +185,6 @@ function Home() {
         </div>
       </section>
 
-      {/* DEALER CTA */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <Reveal>
-            <div className="relative overflow-hidden p-12 md:p-20 border border-primary/30" style={{ background: "linear-gradient(135deg, #1a0a0a, #141414)" }}>
-              <div className="absolute -right-20 -top-20 w-96 h-96 rounded-full" style={{ background: "radial-gradient(circle, rgba(215,25,32,0.25), transparent 60%)" }} />
-              <div className="relative max-w-2xl">
-                <span className="label-accent">Partner with Us</span>
-                <h2 className="font-display text-5xl md:text-6xl mt-3">GROW YOUR BUSINESS WITH GRIPSTA</h2>
-                <p className="mt-4 text-muted-foreground">Join our dealer network — wide product range, attractive margins, fast dispatch.</p>
-                <Link to="/dealer" className="btn-primary mt-8">Apply Now →</Link>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* CONTACT STRIP */}
       <section className="py-24 bg-surface">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-2 gap-10 items-center">
@@ -211,13 +192,13 @@ function Home() {
             <span className="label-accent">Talk to Us</span>
             <h2 className="font-display text-5xl mt-3">FASTEST WAY TO REACH US</h2>
             <div className="mt-8 space-y-3 text-foreground/90">
-              <div className="flex gap-3"><span className="text-primary">📞</span> +91 XXXXX XXXXX</div>
+              <div className="flex gap-3"><span className="text-primary">📞</span> +91 79959 55787</div>
               <div className="flex gap-3"><span className="text-primary">✉️</span> info@gripsta.in</div>
-              <div className="flex gap-3"><span className="text-primary">📍</span> India</div>
+              <div className="flex gap-3"><span className="text-primary">📍</span> Aghapura, Backside of Mahalaksmi Tiffin Center, Hyderabad 500001</div>
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <a href="https://wa.me/919999999999" target="_blank" rel="noreferrer" className="block bg-whatsapp text-white p-10 hover:bg-whatsapp-dark transition-colors">
+            <a href="https://wa.me/917995955787" target="_blank" rel="noreferrer" className="block bg-whatsapp text-white p-10 hover:bg-whatsapp-dark transition-colors">
               <div className="text-4xl">💬</div>
               <h3 className="font-display text-3xl mt-4">CHAT ON WHATSAPP</h3>
               <p className="text-sm opacity-90 mt-2">Fastest way to reach us — pricing, dealer enquiries, and product info, instantly.</p>
