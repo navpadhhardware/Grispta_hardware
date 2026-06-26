@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useCart } from "@/lib/cart";
 import type { Product } from "@/lib/products";
+import { useState } from "react";
 
 const CATEGORY_GRADIENTS: Record<string, string> = {
   hinges:           "linear-gradient(135deg, #1c1c1c 0%, #2a1a0e 100%)",
@@ -33,7 +34,19 @@ interface Props {
 }
 
 export function ProductCard({ product, hideViewButton, image }: Props) {
-  const { add } = useCart();
+  const { add, items } = useCart();
+  const [pop, setPop] = useState(false);
+
+  const existingItem = items.find((i) => i.id === product.id);
+  const qty = existingItem?.qty ?? 0;
+
+  const handleAdd = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    add({ id: product.id, name: product.name, price: product.price, unit: product.unit });
+    setPop(true);
+    setTimeout(() => setPop(false), 600);
+  };
 
   const gradient = CATEGORY_GRADIENTS[product.category] ?? "linear-gradient(135deg,#1a1a1a,#222)";
   const icon = CATEGORY_ICONS[product.category] ?? "📦";
@@ -59,7 +72,6 @@ export function ProductCard({ product, hideViewButton, image }: Props) {
             className="w-full h-full flex flex-col items-center justify-center gap-3 relative"
             style={{ background: gradient }}
           >
-            {/* Subtle grid texture */}
             <div
               className="absolute inset-0 opacity-[0.04]"
               style={{
@@ -68,24 +80,15 @@ export function ProductCard({ product, hideViewButton, image }: Props) {
                   "repeating-linear-gradient(90deg,transparent,transparent 24px,#fff 24px,#fff 25px)",
               }}
             />
-
-            {/* Category icon */}
-            <span
-              className="text-4xl relative z-10"
-              style={{ filter: "grayscale(0.3) opacity(0.7)" }}
-            >
+            <span className="text-4xl relative z-10" style={{ filter: "grayscale(0.3) opacity(0.7)" }}>
               {icon}
             </span>
-
-            {/* Label */}
             <span
               className="relative z-10 text-[10px] uppercase tracking-[0.25em] font-medium"
               style={{ color: "rgba(255,255,255,0.2)" }}
             >
               Image coming soon
             </span>
-
-            {/* Corner brackets */}
             <span className="absolute top-3 left-3 w-4 h-4 border-t border-l border-white/10" />
             <span className="absolute top-3 right-3 w-4 h-4 border-t border-r border-white/10" />
             <span className="absolute bottom-3 left-3 w-4 h-4 border-b border-l border-white/10" />
@@ -93,10 +96,16 @@ export function ProductCard({ product, hideViewButton, image }: Props) {
           </div>
         )}
 
-        {/* Badge */}
         {product.badge && (
           <span className="absolute top-3 left-3 z-20 label-accent bg-background/90 px-2 py-0.5 text-primary text-[10px]">
             {product.badge}
+          </span>
+        )}
+
+        {/* Qty badge on image */}
+        {qty > 0 && (
+          <span className="absolute top-3 right-3 z-20 bg-primary text-primary-foreground font-bold text-xs rounded-full w-6 h-6 flex items-center justify-center">
+            {qty}
           </span>
         )}
       </Link>
@@ -111,20 +120,25 @@ export function ProductCard({ product, hideViewButton, image }: Props) {
 
         <div className="flex gap-3 mt-5">
           <button
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              add({
-                id: product.id,
-                name: product.name,
-                price: product.price,
-                unit: product.unit,
-              });
-            }}
-            className="flex-1 btn-primary text-xs py-2.5"
+            onClick={handleAdd}
+            className="flex-1 btn-primary text-xs py-2.5 relative overflow-hidden"
           >
-            Add to Cart
+            {/* Pop animation label */}
+            <span
+              key={qty}
+              className="absolute inset-0 flex items-center justify-center pointer-events-none"
+              style={{
+                animation: pop ? "cartPop 0.6s ease forwards" : "none",
+                opacity: pop ? 1 : 0,
+              }}
+            >
+              +1
+            </span>
+            <span style={{ opacity: pop ? 0 : 1, transition: "opacity 0.15s" }}>
+              {qty > 0 ? `Add More (${qty})` : "Add to Cart"}
+            </span>
           </button>
+
           {!hideViewButton && (
             <Link
               to="/products"
