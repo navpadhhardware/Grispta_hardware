@@ -184,7 +184,6 @@
 // ];
 
 // export function getProduct(id: string) { return PRODUCTS.find(p => p.id === id); }
-
 export type Category =
   | "hinges"
   | "channel"
