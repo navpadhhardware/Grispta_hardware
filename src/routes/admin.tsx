@@ -972,7 +972,11 @@ function AdminPage() {
                       <div className="flex flex-col items-center gap-0.5">
                         <span className="text-[9px] uppercase tracking-widest text-muted-foreground">Stock</span>
                         <button
-                          onClick={() => updateField(p.id, "in_stock", !p.in_stock)}
+                          onClick={() => {
+  const updated = { ...p, in_stock: !p.in_stock, isDirty: true };
+  setProducts((prev) => prev.map((x) => x.id === p.id ? updated : x));
+  handleSave(updated);
+}}
                           className={`w-9 h-5 rounded-full transition-colors relative ${p.in_stock ? "bg-green-600" : "bg-border"}`}
                         >
                           <span className={`absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all ${p.in_stock ? "left-[18px]" : "left-0.5"}`} />
@@ -983,7 +987,11 @@ function AdminPage() {
                       <div className="flex flex-col items-center gap-0.5">
                         <span className="text-[9px] uppercase tracking-widest text-muted-foreground">Show</span>
                         <button
-                          onClick={() => updateField(p.id, "visible", !p.visible)}
+                         onClick={() => {
+  const updated = { ...p, visible: !p.visible, isDirty: true };
+  setProducts((prev) => prev.map((x) => x.id === p.id ? updated : x));
+  handleSave(updated);
+}}
                           className={`w-9 h-5 rounded-full transition-colors relative ${p.visible ? "bg-primary" : "bg-border"}`}
                         >
                           <span className={`absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all ${p.visible ? "left-[18px]" : "left-0.5"}`} />
