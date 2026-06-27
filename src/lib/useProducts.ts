@@ -9,56 +9,60 @@ export interface MergedProduct extends Product {
 }
 
 export function useProducts() {
-  const [customProducts, setCustomProducts] = useState<any[]>([]);
+  const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetch() {
-      const { data } = await supabase
-        .from("products_override")
-        .select("*");
-      if (data) setCustomProducts(data);
+    supabase.from("products_override").select("*").then(({ data }) => {
+      if (data) setData(data);
       setLoading(false);
-    }
-    fetch();
+    });
   }, []);
 
-  // Hardcoded products — always in stock, use imageUrl from Supabase if available
+  // Map of overrides for hardcoded products
+  const overrideMap: Record<string, any> = {};
+  data.filter((d) => !d.is_custom).forEach((d) => (overrideMap[d.id] = d));
+
+  // Hardcoded products merged with overrides
   const hardcoded: MergedProduct[] = PRODUCTS.map((p) => {
-    const o = customProducts.find((x) => x.id === p.id && !x.is_custom);
+    const o = overrideMap[p.id];
     return {
       ...p,
-      inStock: true,
+      inStock: o === undefined ? true : (o.in_stock ?? true),
       imageUrl: o?.image_url ?? null,
-      visible: true,
+      visible: o === undefined ? true : (o.visible ?? true),
     };
   });
 
-  // Admin-created products from Supabase
-  const custom: MergedProduct[] = customProducts
-    .filter((p) => p.is_custom && p.visible)
-    .map((p) => {
-      const catInfo = CATEGORIES.find((c) => c.id === p.category);
+  // Custom products added from admin — parse category from id format: custom_{category}_{timestamp}
+  const custom: MergedProduct[] = data
+    .filter((d) => d.is_custom)
+    .map((d) => {
+      const parts = d.id.split("_");
+      const categoryId = (parts[1] as Category) ?? "hinges";
+      const catInfo = CATEGORIES.find((c) => c.id === categoryId);
       return {
-        id: p.id,
-        name: p.name,
-        category: p.category as Category,
-        categoryLabel: p.category_label ?? catInfo?.label ?? p.category,
+        id: d.id,
+        name: d.name,
+        category: categoryId,
+        categoryLabel: d.category_label ?? catInfo?.label ?? categoryId,
         price: 0,
         unit: "pc",
-        shortSpec: "",
-        description: "",
+        shortSpec: d.short_spec ?? "",
+        description: d.description ?? "",
         specs: {},
         applications: [],
         install: "",
-        inStock: true,
-        imageUrl: p.image_url ?? null,
-        visible: p.visible ?? true,
+        inStock: d.in_stock ?? true,
+        imageUrl: d.image_url ?? null,
+        visible: d.visible ?? true,
       };
     });
 
-  return {
-    products: [...hardcoded, ...custom],
-    loading,
-  };
+  const all = [
+    ...hardcoded.filter((p) => p.visible),
+    ...custom.filter((p) => p.visible),
+  ];
+
+  return { products: all, loading };
 }
