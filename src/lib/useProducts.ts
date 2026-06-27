@@ -19,11 +19,9 @@ export function useProducts() {
     });
   }, []);
 
-  // Map of overrides for hardcoded products
   const overrideMap: Record<string, any> = {};
   data.filter((d) => !d.is_custom).forEach((d) => (overrideMap[d.id] = d));
 
-  // Hardcoded products merged with overrides
   const hardcoded: MergedProduct[] = PRODUCTS.map((p) => {
     const o = overrideMap[p.id];
     return {
@@ -34,7 +32,6 @@ export function useProducts() {
     };
   });
 
-  // Custom products added from admin — parse category from id format: custom_{category}_{timestamp}
   const custom: MergedProduct[] = data
     .filter((d) => d.is_custom)
     .map((d) => {
@@ -49,7 +46,7 @@ export function useProducts() {
         price: 0,
         unit: "pc",
         shortSpec: d.short_spec ?? "",
-        description: d.description ?? "",
+        description: "",
         specs: {},
         applications: [],
         install: "",
@@ -57,12 +54,11 @@ export function useProducts() {
         imageUrl: d.image_url ?? null,
         visible: d.visible ?? true,
       };
-    });
+    })
+    .filter((d) => d.visible);
 
-  const all = [
-    ...hardcoded.filter((p) => p.visible),
-    ...custom.filter((p) => p.visible),
-  ];
-
-  return { products: all, loading };
+  return {
+    products: [...hardcoded.filter((p) => p.visible), ...custom],
+    loading,
+  };
 }
