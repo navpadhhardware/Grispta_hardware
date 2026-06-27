@@ -186,7 +186,6 @@
 // export function getProduct(id: string) { return PRODUCTS.find(p => p.id === id); }
 
 
-
 import { useEffect, useState } from "react";
 import { supabase } from "./supabase";
 import { PRODUCTS, CATEGORIES, type Product, type Category } from "./products";
@@ -222,9 +221,9 @@ export function useProducts() {
     };
   });
 
-  // Admin-created products
+  // Admin-created custom products
   const custom: MergedProduct[] = data
-    .filter((d) => d.is_custom && d.visible)
+    .filter((d) => d.is_custom)
     .map((d) => {
       const catInfo = CATEGORIES.find((c) => c.id === d.category);
       return {
@@ -239,13 +238,15 @@ export function useProducts() {
         specs: {},
         applications: [],
         install: "",
-        inStock: true,
+        inStock: d.in_stock ?? true,
         imageUrl: d.image_url ?? null,
-        visible: true,
+        visible: d.visible ?? true,
       };
-    });
+    })
+    .filter((d) => d.visible);
 
-  const all = [...hardcoded.filter((p) => p.visible), ...custom];
-
-  return { products: all, loading };
+  return {
+    products: [...hardcoded.filter((p) => p.visible), ...custom],
+    loading,
+  };
 }
