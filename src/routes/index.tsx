@@ -75,7 +75,7 @@ function Home() {
               { v: 80000, s: "+", l: "Installations" },
               { v: 50000, s: "+", l: "Cycle Tested" },
               { v: 80,    s: "+", l: "Products" },
-              { v: 48,    s: "+", l: "Hrs Salt Spray Tested" },
+              { v: 48,    s: "", l: "Hrs Salt Spray Tested" },
             ].map(s => (
               <div key={s.l}>
                 <Counter to={s.v} suffix={s.s} />
