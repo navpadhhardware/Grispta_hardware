@@ -502,10 +502,10 @@ function Home() {
   const featured = products.slice(0, 8);
 
   const applications = [
-    { name: "Modern Kitchens", desc: "Soft-close drawers, premium hinges", img: "/applications/kitchen.jpeg" },
-    { name: "Wardrobes", desc: "Heavy-duty hinges in multiple finishes", img: "/applications/wardrobe.jpg" },
-    { name: "Office Interiors", desc: "Contract-grade hardware", img: "/applications/offices.jpg" },
-    { name: "Living Room Furniture", desc: "Lid stays & gas springs", img: "/applications/living.jpg" },
+    { name: "Modern Kitchens", desc: "Soft-close drawers, premium hinges", img: "/applications/kitchen .jpeg" },
+    { name: "Wardrobes", desc: "Heavy-duty hinges in multiple finishes", img: "/applications/wardrobe.jpeg" },
+    { name: "Office Interiors", desc: "Contract-grade hardware", img: "/applications/office.jpeg" },
+    { name: "Living Room Furniture", desc: "Lid stays & gas springs", img: "/applications/living.jpeg" },
   ];
 
   return (
