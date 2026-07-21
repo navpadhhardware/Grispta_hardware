@@ -164,7 +164,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Gripsta — Premium Architectural & Furniture Hardware" },
-      { name: "description", content: "Gripsta builds premium hinges, drawer channels, drywall screws and lid supports — engineered for precision, built to last." },
+      { name: "description", content: "Gripsta, by Navpadhhardware, builds premium hinges, drawer channels, drywall screws and lid supports — engineered for precision, built to last." },
       { name: "author", content: "Gripsta" },
       { property: "og:title", content: "Gripsta — Where Innovation Meets Durability" },
       { property: "og:description", content: "Premium architectural & furniture hardware for modern interiors." },
@@ -185,9 +185,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@context": "https://schema.org",
           "@type": "Organization",
           "name": "Gripsta",
+          "alternateName": "Navpadhhardware",
           "url": "https://www.gripsta.in",
           "logo": "https://www.gripsta.in/logo.png",
-          "description": "Gripsta builds premium hinges, drawer channels, drywall screws and lid supports — engineered for precision, built to last."
+          "description": "Gripsta, by Navpadhhardware, builds premium hinges, drawer channels, drywall screws and lid supports — engineered for precision, built to last."
         }),
       },
     ],
