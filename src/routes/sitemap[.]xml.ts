@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { PRODUCTS } from "@/lib/products";
 
-const BASE_URL = "";
+const BASE_URL = "https://www.gripsta.in";
 
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
