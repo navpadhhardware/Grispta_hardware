@@ -184,8 +184,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
-          "name": "Gripsta",
-          "alternateName": "Navpadhhardware",
+          "name": "Navpadh hardware",
+          "alternateName": "Gripsta",
           "url": "https://www.gripsta.in",
           "logo": "https://www.gripsta.in/logo.png",
           "description": "Gripsta, by Navpadhhardware, builds premium hinges, drawer channels, drywall screws and lid supports — engineered for precision, built to last."
