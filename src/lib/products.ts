@@ -1656,7 +1656,9 @@ export type Category =
   | "pantry"
   | "s-corner"
   | "umc"
-  | "sky-wheel";
+  | "sky-wheel"
+  | "rolling-shutters"
+  | "elevator-pull-down";
 
 export interface Product {
   id: string;
@@ -1673,6 +1675,8 @@ export interface Product {
   applications: string[];
   install: string;
   badge?: string;
+  /** Bundled default product photo (used until an admin uploads/overrides one). */
+  img?: string;
 }
 
 export const FINISH_COLORS: Record<string, string> = {
@@ -1806,6 +1810,24 @@ export const PRODUCTS: Product[] = [
     description: "Larger sky wheel unit for 700mm corner cabinets. Extra shelf depth for maximum storage.",
     specs: { Width: "700mm", Type: "Sky Wheel Rotating", Action: "Butterfly Open" },
     applications: ["Large corner cabinets","Luxury kitchens"], install: "Align door panels carefully before fixing shelf arms for smooth butterfly action." },
+
+  // ROLLING SHUTTERS
+  { id: "rolling-shutter-standard", name: "Aluminium Roller Shutter Cabinet Door", category: "rolling-shutters", categoryLabel: "Rolling Shutters", price: 0, unit: "set", badge: "New",
+    shortSpec: "Tambour roll · Smooth glide · Aluminium slats",
+    description: "Aluminium tambour roller shutter for wall and tall cabinets — rolls smoothly up and out of sight into the carcass, saving swing space and giving cabinets a sleek, modern front.",
+    specs: { Material: "Aluminium slats", Action: "Vertical roll-up", Track: "Side channel", Finish: "Matt Silver" },
+    applications: ["Kitchen wall cabinets","Crockery units","Office cabinets","Appliance garages"],
+    install: "Fix side tracks to the cabinet carcass, slide the shutter curtain into the tracks, and secure the top roll housing. Check the curtain rolls freely before final fixing.",
+    img: "/categories/rolling-shutters.jpg" },
+
+  // ELEVATOR PULL DOWN
+  { id: "elevator-pulldown-standard", name: "Wardrobe Elevator Pull Down Unit", category: "elevator-pull-down", categoryLabel: "Elevator Pull Down", price: 0, unit: "set", badge: "New",
+    shortSpec: "Gas-lift assist · Soft close · Height adjustable",
+    description: "Gas-lift-assisted pull-down wardrobe rail that lowers a hanging rod from a high shelf to a comfortable reach height and glides back up, making the top of tall wardrobes fully usable.",
+    specs: { Mechanism: "Gas-lift assist", Action: "Pull down / soft return", Load: "8kg", Adjustable: "Height & tilt" },
+    applications: ["Tall wardrobes","Walk-in closets","High-reach storage"],
+    install: "Mount the two side brackets level inside the wardrobe carcass, clip in the pull-down arm assembly, and adjust the gas-lift tension so the rail returns smoothly under load.",
+    img: "/categories/elevator-pull-down.jpg" },
 ];
 
 export const CATEGORIES: { id: Category; label: string; desc: string; icon: string; img?: string }[] = [
@@ -1817,6 +1839,8 @@ export const CATEGORIES: { id: Category; label: string; desc: string; icon: stri
   { id: "s-corner",       label: "S Corner",        desc: "Rotating S-corner units for L-shaped corner cabinets",          icon: "🔄", img: "/categories/s-corner.jpg" },
   { id: "umc",            label: "UMC",             desc: "Under-mount concealed channels — invisible, smooth, soft close", icon: "⚙️", img: "/categories/umc.jpg" },
   { id: "sky-wheel",      label: "Sky Wheel",       desc: "Sky wheel butterfly corner units for premium kitchens",          icon: "🌀", img: "/categories/sky-wheel.jpg" },
+  { id: "rolling-shutters", label: "Rolling Shutters", desc: "Aluminium tambour roller shutters for cabinets & wall units", icon: "🎚️", img: "/categories/rolling-shutters.jpg" },
+  { id: "elevator-pull-down", label: "Elevator Pull Down", desc: "Gas-lift pull-down wardrobe rails for high-reach storage", icon: "⬇️", img: "/categories/elevator-pull-down.jpg" },
 ];
 
 export function getProduct(id: string) { return PRODUCTS.find(p => p.id === id); }
