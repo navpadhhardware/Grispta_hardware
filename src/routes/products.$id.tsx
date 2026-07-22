@@ -48,12 +48,16 @@ function Detail() {
           <Link to="/products" className="text-xs text-muted-foreground hover:text-primary uppercase tracking-widest">← Back to Products</Link>
           <div className="mt-8 grid lg:grid-cols-2 gap-12">
             <div>
-              <div className="aspect-square bg-gradient-to-br from-[#222] to-[#1a1a1a] border border-border flex items-center justify-center">
-                <div className="text-[180px] opacity-80">{
-                  product.category === "hinges" ? "🔩"
-                  : product.category === "screws" ? "🪛"
-                  : product.category === "channels" ? "📐" : "⚙️"
-                }</div>
+              <div className="aspect-square bg-gradient-to-br from-[#222] to-[#1a1a1a] border border-border flex items-center justify-center overflow-hidden">
+                {product.img ? (
+                  <img src={product.img} alt={product.name} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="text-[180px] opacity-80">{
+                    product.category === "hinges" ? "🔩"
+                    : product.category === "screws" ? "🪛"
+                    : product.category === "channels" ? "📐" : "⚙️"
+                  }</div>
+                )}
               </div>
               <div className="grid grid-cols-4 gap-3 mt-3">
                 {[0,1,2,3].map(i => (
@@ -69,8 +73,14 @@ function Detail() {
               <h1 className="font-display text-4xl md:text-5xl mt-2">{product.name}</h1>
               <p className="text-muted-foreground mt-4">{product.description}</p>
               <div className="mt-6 flex items-baseline gap-2">
-                <span className="font-display text-6xl text-primary">₹{product.price}</span>
-                <span className="text-muted-foreground">/{product.unit}</span>
+                {product.price > 0 ? (
+                  <>
+                    <span className="font-display text-6xl text-primary">₹{product.price}</span>
+                    <span className="text-muted-foreground">/{product.unit}</span>
+                  </>
+                ) : (
+                  <span className="font-display text-3xl text-primary">Contact for Price</span>
+                )}
               </div>
 
               {product.finishes && (
